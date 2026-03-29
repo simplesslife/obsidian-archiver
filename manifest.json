@@ -1,6 +1,6 @@
 {
-  "id": "obsidian-archiver",
-  "name": "Archiver",
+  "id": "vault-auto-archiver",
+  "name": "Vault Auto Archiver",
   "version": "1.0.0",
   "minAppVersion": "0.15.0",
   "description": "Automatically archive files and folders into zip format and generate a detailed markdown log of the operation.",
