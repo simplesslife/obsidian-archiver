@@ -1,0 +1,29 @@
+{
+  "name": "obsidian-archiver",
+  "version": "1.0.0",
+  "description": "An Obsidian plugin to recursively archive folders/files into a zip and log the action.",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+    "version": "node version-bump.mjs && git add manifest.json versions.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/md5": "^2.3.6",
+    "@types/node": "^16.11.29",
+    "@typescript-eslint/eslint-plugin": "5.29.0",
+    "@typescript-eslint/parser": "5.29.0",
+    "builtin-modules": "3.3.0",
+    "esbuild": "0.17.3",
+    "obsidian": "latest",
+    "tslib": "2.4.0",
+    "typescript": "4.7.4"
+  },
+  "dependencies": {
+    "jszip": "^3.10.1",
+    "md5": "^2.3.0"
+  }
+}

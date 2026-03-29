@@ -137,3 +137,11 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+
+# Obsidian 本地测试库环境
+.obsidian/
+.vscode/
+.idea/
+# main.js
+# styles.css

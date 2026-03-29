@@ -1,0 +1,10 @@
+{
+  "id": "obsidian-archiver",
+  "name": "自动归档 (Archiver)",
+  "version": "1.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "自动归档文件并记录日志。",
+  "author": "Antigravity",
+  "authorUrl": "",
+  "isDesktopOnly": false
+}
