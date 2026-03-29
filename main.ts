@@ -1,4 +1,4 @@
-import { App, Plugin, PluginSettingTab, Setting, TAbstractFile, Notice, TFolder, TFile } from 'obsidian';
+import { App, Plugin, PluginSettingTab, Setting, TAbstractFile, Notice, TFolder, TFile, Vault } from 'obsidian';
 import JSZip from 'jszip';
 import md5 from 'md5';
 
@@ -24,7 +24,7 @@ export default class ArchiverPlugin extends Plugin {
 			this.app.workspace.on("file-menu", (menu, file: TAbstractFile) => {
 				menu.addItem((item) => {
 					item
-						.setTitle("归档内容 (Archive)")
+						.setTitle("归档内容 (archive)")
 						.setIcon("archive")
 						.onClick(async () => {
 							await this.archiveContent(file);
@@ -46,7 +46,7 @@ export default class ArchiverPlugin extends Plugin {
 		await this.saveData(this.settings);
 	}
 
-	async ensureFolderExists(vault: any, path: string): Promise<void> {
+	async ensureFolderExists(vault: Vault, path: string): Promise<void> {
 		if (!path || path === '' || path === '/') return;
 		const normalizedPath = path.replace(/\\/g, '/').replace(/^\//, '').replace(/\/$/, '');
 		const folders = normalizedPath.split('/');
@@ -149,11 +149,11 @@ class ArchiverSettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
-		containerEl.createEl('h2', {text: '自动归档插件设置'});
+		new Setting(containerEl).setName('自动归档插件设置').setHeading();
 
 		new Setting(containerEl)
-			.setName('归档目录 (Archive Directory)')
-			.setDesc('归档文件将被压缩到此目录下。留空则存放在 Vault 根目录。如果目录不存在将会被自动创建。')
+			.setName('归档目录 (Archive directory)')
+			.setDesc('归档文件将被压缩到此目录下。留空则存放在 vault 根目录。如果目录不存在将会被自动创建。')
 			.addText(text => text
 				.setPlaceholder('Archive')
 				.setValue(this.plugin.settings.archivePath)
@@ -171,7 +171,7 @@ class ArchiverSettingTab extends PluginSettingTab {
 				}));
 
 		new Setting(containerEl)
-			.setName('归档日志文件 (Log File)')
+			.setName('归档日志文件 (Log file)')
 			.setDesc('记录每次归档的操作日志。留空则默认为 ArchiverLog.md（根目录）。请包含扩展名（如 .md）。')
 			.addText(text => text
 				.setPlaceholder('Archive/ArchiverLog.md')
