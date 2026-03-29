@@ -1,10 +1,10 @@
 {
   "id": "obsidian-archiver",
-  "name": "自动归档 (Archiver)",
+  "name": "Archiver",
   "version": "1.0.0",
   "minAppVersion": "0.15.0",
-  "description": "自动归档文件并记录日志。",
-  "author": "Antigravity",
-  "authorUrl": "",
+  "description": "Automatically archive files and folders into zip format and generate a detailed markdown log of the operation.",
+  "author": "simplesslife",
+  "authorUrl": "https://github.com/simplesslife",
   "isDesktopOnly": false
 }
