@@ -152,7 +152,7 @@ class ArchiverSettingTab extends PluginSettingTab {
 		new Setting(containerEl).setName('自动归档插件设置').setHeading();
 
 		new Setting(containerEl)
-			.setName('归档目录 (Archive directory)')
+			.setName('归档目录 (archive directory)')
 			.setDesc('归档文件将被压缩到此目录下。留空则存放在 vault 根目录。如果目录不存在将会被自动创建。')
 			.addText(text => text
 				.setPlaceholder('Archive')
@@ -160,35 +160,17 @@ class ArchiverSettingTab extends PluginSettingTab {
 				.onChange(async (value) => {
 					this.plugin.settings.archivePath = value;
 					await this.plugin.saveSettings();
-					if (value && value !== '' && value !== '/') {
-						try {
-							await this.plugin.ensureFolderExists(this.plugin.app.vault, value);
-							new Notice('归档目录已检查/创建');
-						} catch(e) {
-							new Notice('检查/创建归档目录失败');
-						}
-					}
 				}));
 
 		new Setting(containerEl)
-			.setName('归档日志文件 (Log file)')
-			.setDesc('记录每次归档的操作日志。留空则默认为 ArchiverLog.md（根目录）。请包含扩展名（如 .md）。')
+			.setName('归档日志文件 (log file)')
+			.setDesc('记录每次归档的操作日志。留空则默认为 archiverlog.md（根目录）。请包含扩展名（如 .md）。')
 			.addText(text => text
-				.setPlaceholder('Archive/ArchiverLog.md')
+				.setPlaceholder('Archive/archiverlog.md')
 				.setValue(this.plugin.settings.logFilePath)
 				.onChange(async (value) => {
 					this.plugin.settings.logFilePath = value;
 					await this.plugin.saveSettings();
-					
-					const logDirPath = value.includes('/') ? value.substring(0, value.lastIndexOf('/')) : '';
-					if (logDirPath && logDirPath !== '') {
-						try {
-							await this.plugin.ensureFolderExists(this.plugin.app.vault, logDirPath);
-							new Notice('日志目录已检查/创建');
-						} catch(e) {
-							new Notice('检查/创建日志目录失败');
-						}
-					}
 				}));
 	}
 }

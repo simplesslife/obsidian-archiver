@@ -3100,30 +3100,13 @@ var ArchiverSettingTab = class extends import_obsidian.PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
     new import_obsidian.Setting(containerEl).setName("\u81EA\u52A8\u5F52\u6863\u63D2\u4EF6\u8BBE\u7F6E").setHeading();
-    new import_obsidian.Setting(containerEl).setName("\u5F52\u6863\u76EE\u5F55 (Archive directory)").setDesc("\u5F52\u6863\u6587\u4EF6\u5C06\u88AB\u538B\u7F29\u5230\u6B64\u76EE\u5F55\u4E0B\u3002\u7559\u7A7A\u5219\u5B58\u653E\u5728 vault \u6839\u76EE\u5F55\u3002\u5982\u679C\u76EE\u5F55\u4E0D\u5B58\u5728\u5C06\u4F1A\u88AB\u81EA\u52A8\u521B\u5EFA\u3002").addText((text) => text.setPlaceholder("Archive").setValue(this.plugin.settings.archivePath).onChange(async (value) => {
+    new import_obsidian.Setting(containerEl).setName("\u5F52\u6863\u76EE\u5F55 (archive directory)").setDesc("\u5F52\u6863\u6587\u4EF6\u5C06\u88AB\u538B\u7F29\u5230\u6B64\u76EE\u5F55\u4E0B\u3002\u7559\u7A7A\u5219\u5B58\u653E\u5728 vault \u6839\u76EE\u5F55\u3002\u5982\u679C\u76EE\u5F55\u4E0D\u5B58\u5728\u5C06\u4F1A\u88AB\u81EA\u52A8\u521B\u5EFA\u3002").addText((text) => text.setPlaceholder("Archive").setValue(this.plugin.settings.archivePath).onChange(async (value) => {
       this.plugin.settings.archivePath = value;
       await this.plugin.saveSettings();
-      if (value && value !== "" && value !== "/") {
-        try {
-          await this.plugin.ensureFolderExists(this.plugin.app.vault, value);
-          new import_obsidian.Notice("\u5F52\u6863\u76EE\u5F55\u5DF2\u68C0\u67E5/\u521B\u5EFA");
-        } catch (e) {
-          new import_obsidian.Notice("\u68C0\u67E5/\u521B\u5EFA\u5F52\u6863\u76EE\u5F55\u5931\u8D25");
-        }
-      }
     }));
-    new import_obsidian.Setting(containerEl).setName("\u5F52\u6863\u65E5\u5FD7\u6587\u4EF6 (Log file)").setDesc("\u8BB0\u5F55\u6BCF\u6B21\u5F52\u6863\u7684\u64CD\u4F5C\u65E5\u5FD7\u3002\u7559\u7A7A\u5219\u9ED8\u8BA4\u4E3A ArchiverLog.md\uFF08\u6839\u76EE\u5F55\uFF09\u3002\u8BF7\u5305\u542B\u6269\u5C55\u540D\uFF08\u5982 .md\uFF09\u3002").addText((text) => text.setPlaceholder("Archive/ArchiverLog.md").setValue(this.plugin.settings.logFilePath).onChange(async (value) => {
+    new import_obsidian.Setting(containerEl).setName("\u5F52\u6863\u65E5\u5FD7\u6587\u4EF6 (log file)").setDesc("\u8BB0\u5F55\u6BCF\u6B21\u5F52\u6863\u7684\u64CD\u4F5C\u65E5\u5FD7\u3002\u7559\u7A7A\u5219\u9ED8\u8BA4\u4E3A archiverlog.md\uFF08\u6839\u76EE\u5F55\uFF09\u3002\u8BF7\u5305\u542B\u6269\u5C55\u540D\uFF08\u5982 .md\uFF09\u3002").addText((text) => text.setPlaceholder("Archive/archiverlog.md").setValue(this.plugin.settings.logFilePath).onChange(async (value) => {
       this.plugin.settings.logFilePath = value;
       await this.plugin.saveSettings();
-      const logDirPath = value.includes("/") ? value.substring(0, value.lastIndexOf("/")) : "";
-      if (logDirPath && logDirPath !== "") {
-        try {
-          await this.plugin.ensureFolderExists(this.plugin.app.vault, logDirPath);
-          new import_obsidian.Notice("\u65E5\u5FD7\u76EE\u5F55\u5DF2\u68C0\u67E5/\u521B\u5EFA");
-        } catch (e) {
-          new import_obsidian.Notice("\u68C0\u67E5/\u521B\u5EFA\u65E5\u5FD7\u76EE\u5F55\u5931\u8D25");
-        }
-      }
     }));
   }
 };
